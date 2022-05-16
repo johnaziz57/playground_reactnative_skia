@@ -1271,6 +1271,13 @@
   resolved "https://nexus.global.picnicinternational.com/repository/npm/@react-native/polyfills/-/polyfills-2.0.0.tgz#4c40b74655c83982c8cf47530ee7dc13d957b6aa"
   integrity sha512-K0aGNn1TjalKj+65D7ycc1//H9roAQ51GJVk5ZJQFb2teECGmzd86bYDC0aYdbRf7gtovescq4Zt6FR0tgXiHQ==
 
+"@shopify/react-native-skia@^0.1.124":
+  version "0.1.124"
+  resolved "https://nexus.global.picnicinternational.com/repository/npm/@shopify/react-native-skia/-/react-native-skia-0.1.124.tgz#602cedf654c1c20b5f124508e80839940a6ce7df"
+  integrity sha512-9uwm0CVdsHDIbQXHtpqc2bwyWM20FRKg3E3peJdddu9ZW623vEngwEcMcODWJ7c3jmUES+Ve/EbZLDZXjpGFPg==
+  dependencies:
+    react-reconciler "^0.26.2"
+
 "@sideway/address@^4.1.3":
   version "4.1.4"
   resolved "https://nexus.global.picnicinternational.com/repository/npm/@sideway/address/-/address-4.1.4.tgz#03dccebc6ea47fdc226f7d3d1ad512955d4783f0"
@@ -5749,6 +5756,15 @@ react-native@0.68.2:
     use-subscription ">=1.0.0 <1.6.0"
     whatwg-fetch "^3.0.0"
     ws "^6.1.4"
+
+react-reconciler@^0.26.2:
+  version "0.26.2"
+  resolved "https://nexus.global.picnicinternational.com/repository/npm/react-reconciler/-/react-reconciler-0.26.2.tgz#bbad0e2d1309423f76cf3c3309ac6c96e05e9d91"
+  integrity sha512-nK6kgY28HwrMNwDnMui3dvm3rCFjZrcGiuwLc5COUipBK5hWHLOxMJhSnSomirqWwjPBJKV1QcbkI0VJr7Gl1Q==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    scheduler "^0.20.2"
 
 react-refresh@^0.4.0:
   version "0.4.3"
