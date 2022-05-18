@@ -11,6 +11,8 @@
 import { BlurMask, Canvas, Circle, Color, Group, Oval, Paint, RadialGradient, SkRect, SweepGradient, usePaintRef, Vector } from '@shopify/react-native-skia';
 import React from 'react';
 import { useWindowDimensions, View } from 'react-native';
+import ReactLogo from './drawings/ReactLogo';
+import SVG from './drawings/SVG';
 
 const App = () => {
   const { width, height } = useWindowDimensions()
@@ -29,28 +31,7 @@ const App = () => {
   const circlePaint = usePaintRef()
 
   return (
-
-    <Canvas style={{ flex: 1 }}>
-
-      <Paint ref={circlePaint}>
-        <RadialGradient c={center} r={50} colors={[c1, c2]} />
-      </Paint>
-
-      <Circle paint={circlePaint} c={{ x: width / 2, y: height / 2 }} r={25} color="lightblue" />
-      <Paint ref={ovalPaint} style="stroke" strokeWidth={18}>
-        <SweepGradient c={center} colors={[c2, c1, c2]} />
-        <BlurMask blur={20} style="inner"/>
-      </Paint>
-      <Group paint={ovalPaint}>
-        <Oval rect={ovalRect} />
-        <Group transform={[{ rotate: Math.PI / 3 }, { scale: -1 }]} origin={center}>
-          <Oval rect={ovalRect} />
-        </Group>
-        <Group transform={[{ rotate: - (Math.PI / 3) }, { scale: -1 }]} origin={center}>
-          <Oval rect={ovalRect} />
-        </Group>
-      </Group>
-    </Canvas>
+    <SVG/>
   );
 };
 
