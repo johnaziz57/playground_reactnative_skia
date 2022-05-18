@@ -8,36 +8,45 @@
  * @format
  */
 
-import { Canvas, center, Circle, Group, Oval, Paint, Rect, SkRect, SweepGradient, usePaintRef, Vector } from '@shopify/react-native-skia';
+import { BlurMask, Canvas, Circle, Color, Group, Oval, Paint, RadialGradient, SkRect, SweepGradient, usePaintRef, Vector } from '@shopify/react-native-skia';
 import React from 'react';
 import { useWindowDimensions, View } from 'react-native';
 
 const App = () => {
   const { width, height } = useWindowDimensions()
   const center: Vector = { x: width / 2, y: height / 2 }
+  const c1: Color = "lightblue"
+  const c2: Color = "blue"
+
   const ovalRect: SkRect = {
     height: 150,
     width: width - 32,
     x: 16,
     y: (height / 2) - 75
   }
+  const ovalPaint = usePaintRef()
 
-  const paint = usePaintRef()
+  const circlePaint = usePaintRef()
 
   return (
 
     <Canvas style={{ flex: 1 }}>
-      <Circle c={{ x: width / 2, y: height / 2 }} r={25} color="lightblue" />
-      <Paint ref={paint} style="stroke" strokeWidth={18}>
-        <SweepGradient c={center} colors={["red","blue","red"]}/>
+
+      <Paint ref={circlePaint}>
+        <RadialGradient c={center} r={50} colors={[c1, c2]} />
       </Paint>
 
-      <Group paint={paint}>
+      <Circle paint={circlePaint} c={{ x: width / 2, y: height / 2 }} r={25} color="lightblue" />
+      <Paint ref={ovalPaint} style="stroke" strokeWidth={18}>
+        <SweepGradient c={center} colors={[c2, c1, c2]} />
+        <BlurMask blur={20} style="inner"/>
+      </Paint>
+      <Group paint={ovalPaint}>
         <Oval rect={ovalRect} />
-        <Group transform={[{ rotate: Math.PI / 3 }]} origin={center}>
+        <Group transform={[{ rotate: Math.PI / 3 }, { scale: -1 }]} origin={center}>
           <Oval rect={ovalRect} />
         </Group>
-        <Group transform={[{ rotate: - (Math.PI / 3) }]} origin={center}>
+        <Group transform={[{ rotate: - (Math.PI / 3) }, { scale: -1 }]} origin={center}>
           <Oval rect={ovalRect} />
         </Group>
       </Group>
