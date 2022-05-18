@@ -8,30 +8,37 @@
  * @format
  */
 
-import { Canvas, center, Circle, Group, Oval, Rect, SkRect, Vector } from '@shopify/react-native-skia';
+import { Canvas, center, Circle, Group, Oval, Paint, Rect, SkRect, SweepGradient, usePaintRef, Vector } from '@shopify/react-native-skia';
 import React from 'react';
 import { useWindowDimensions, View } from 'react-native';
 
 const App = () => {
   const { width, height } = useWindowDimensions()
   const center: Vector = { x: width / 2, y: height / 2 }
-  const rct: SkRect = {
+  const ovalRect: SkRect = {
     height: 150,
     width: width - 32,
     x: 16,
     y: (height / 2) - 75
   }
+
+  const paint = usePaintRef()
+
   return (
 
     <Canvas style={{ flex: 1 }}>
       <Circle c={{ x: width / 2, y: height / 2 }} r={25} color="lightblue" />
-      <Group color="lightblue" style="stroke" strokeWidth={18}>
-        <Oval rect={rct} />
+      <Paint ref={paint} style="stroke" strokeWidth={18}>
+        <SweepGradient c={center} colors={["red","blue","red"]}/>
+      </Paint>
+
+      <Group paint={paint}>
+        <Oval rect={ovalRect} />
         <Group transform={[{ rotate: Math.PI / 3 }]} origin={center}>
-          <Oval rect={rct} />
+          <Oval rect={ovalRect} />
         </Group>
         <Group transform={[{ rotate: - (Math.PI / 3) }]} origin={center}>
-          <Oval rect={rct} />
+          <Oval rect={ovalRect} />
         </Group>
       </Group>
     </Canvas>
