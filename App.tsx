@@ -16,7 +16,7 @@ const App = () => {
   const { width, height } = useWindowDimensions()
   const center: Vector = { x: width / 2, y: height / 2 }
   const c1: Color = "lightblue"
-  const c2: Color = "blue"
+  const c2 = "#4A759B";
 
   const ovalRect: SkRect = {
     height: 150,
