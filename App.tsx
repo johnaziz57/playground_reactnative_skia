@@ -8,34 +8,33 @@
  * @format
  */
 
-import { Canvas, Circle, Group } from '@shopify/react-native-skia';
+import { Canvas, center, Circle, Group, Oval, Rect, SkRect, Vector } from '@shopify/react-native-skia';
 import React from 'react';
-import { View } from 'react-native';
+import { useWindowDimensions, View } from 'react-native';
 
 const App = () => {
-  const width = 256;
-  const height = 256;
-  const r = 215;
-
+  const { width, height } = useWindowDimensions()
+  const center: Vector = { x: width / 2, y: height / 2 }
+  const rct: SkRect = {
+    height: 150,
+    width: width - 32,
+    x: 16,
+    y: (height / 2) - 75
+  }
   return (
-    <View style={{
-      width: "100%",
-      height: "100%",
-      backgroundColor: "gray"
-    }}>
-      <Canvas style={{ flex: 1 }}>
-        <Group blendMode="multiply">
-          <Circle cx={r} cy={r} r={r} color="cyan" />
-          <Circle cx={width - r} cy={r} r={r} color="magenta" />
-          <Circle
-            cx={width / 2}
-            cy={height - r}
-            r={r}
-            color="yellow"
-          />
+
+    <Canvas style={{ flex: 1 }}>
+      <Circle c={{ x: width / 2, y: height / 2 }} r={25} color="lightblue" />
+      <Group color="lightblue" style="stroke" strokeWidth={18}>
+        <Oval rect={rct} />
+        <Group transform={[{ rotate: Math.PI / 3 }]} origin={center}>
+          <Oval rect={rct} />
         </Group>
-      </Canvas>
-    </View>
+        <Group transform={[{ rotate: - (Math.PI / 3) }]} origin={center}>
+          <Oval rect={rct} />
+        </Group>
+      </Group>
+    </Canvas>
   );
 };
 
