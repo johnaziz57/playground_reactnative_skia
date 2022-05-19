@@ -15,23 +15,8 @@ import ReactLogo from './drawings/ReactLogo';
 import SVG from './drawings/SVG';
 
 const App = () => {
-  const { width, height } = useWindowDimensions()
-  const center: Vector = { x: width / 2, y: height / 2 }
-  const c1: Color = "lightblue"
-  const c2 = "#4A759B";
-
-  const ovalRect: SkRect = {
-    height: 150,
-    width: width - 32,
-    x: 16,
-    y: (height / 2) - 75
-  }
-  const ovalPaint = usePaintRef()
-
-  const circlePaint = usePaintRef()
-
   return (
-    <SVG/>
+    <ReactLogo/>
   );
 };
 
